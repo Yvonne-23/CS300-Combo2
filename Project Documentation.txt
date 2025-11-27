@@ -71,8 +71,10 @@ Condition Variables
 * Final version pushed before submission
 
 5. How to Run the Program
-g++ Main.cpp Domino.cpp -o domino -pthread
-./domino
+g++ -std=c++17 -pthread "Main (1).cpp" Domino.cpp -o domino.exe
+.\domino.exe
+
+
 
 
 6. Conclusion
