@@ -1,0 +1,83 @@
+
+1. Project Overview
+
+This project is a two-player domino game written in C++. Each player runs in a separate thread, and both players share the same table and stock of dominoes. 
+The program demonstrates multithreading, condition variables, mutex-protected critical sections, and standard OOP design in C++.
+
+
+2. Implementation Steps
+
+Step 1 — Created the Domino Classes
+
+* Built `CDominoes` to generate all 28 tiles
+* Built `CRandom` to shuffle the set
+* Made a `CTable` class to keep the played domino line
+
+Step 2 — Implemented Player Logic
+
+* Created a `CPlayer` class
+* Added functions to play, draw, or pass
+* Added logic to detect when a player wins
+
+Step 3 — Added the Game Controller
+
+* Wrote `main()` to build the set, deal tiles, and create players
+* Connected table + stock to both players
+
+Step 4 — Added Multithreading
+
+* Created two threads (one for each player)
+* Both threads ran the same function, `playerThread`
+* Each one waited for its turn to play
+
+Step 5 — Added Synchronization
+
+* Used one mutex to protect shared resources
+* Used condition variables so threads wait for their turn
+* Ensured no shared memory race conditions
+
+Step 6 — Final Testing
+
+* Verified alternating turns
+* Verified drawing, passing, and game-ending behavior
+* Printed final summary
+
+
+3. Multithreading & Mutex Explanation
+
+Multithreading
+
+* Player 1 runs on Thread 1
+* Player 2 runs on Thread 2
+* Both share: table, stock, game flags
+
+Mutex / Protected Critical Section
+
+* A global `std::mutex mtx` protects shared data
+* Only ONE thread can modify stock/table at a time
+* Prevents race conditions
+
+Condition Variables
+
+* `cv_p1` and `cv_p2` make players wait for their turn
+* Ensures proper turn-taking
+
+
+4. GitHub Usage
+
+* Created a repository
+* Uploaded all source files
+* Commits included: initial design, multithreading, final cleanup
+* Final version pushed before submission
+
+5. How to Run the Program
+g++ Main.cpp Domino.cpp -o domino -pthread
+./domino
+
+
+6. Conclusion
+
+This project successfully demonstrates multithreading, mutex-protected shared resources, and a functional domino game implemented using object-oriented C++. 
+All required features were achieved, and the program runs correctly. 
+
+
